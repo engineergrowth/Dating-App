@@ -4,7 +4,7 @@ import { supabase } from '../supabase';
 const FetchProfiles = () => {
     const [profiles, setProfiles] = useState([]);
     const [error, setError] = useState(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentPic, setCurrentPic] = useState(0);
 
     useEffect(() => {
         const fetchProfiles = async () => {
@@ -27,11 +27,11 @@ const FetchProfiles = () => {
     }, []);
 
     const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % profiles.length);
+        setCurrentPic((prevPic) => (prevPic + 1) % profiles.length);
     };
 
     const handleBack = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + profiles.length) % profiles.length);
+        setCurrentPic((prevPic) => (prevPic - 1 + profiles.length) % profiles.length);
     };
 
     if (error) {
@@ -45,8 +45,8 @@ const FetchProfiles = () => {
             <div>
                 {profiles.length > 0 && (
                     <div>
-                        <img src={profiles[currentIndex].picture_url} alt={`Profile ${currentIndex + 1}`} />
-                        <p>{profiles[currentIndex].name}</p> 
+                        <img src={profiles[currentPic].picture_url} alt={`Profile ${currentPic + 1}`} />
+                        <p>{profiles[currentPic].name}</p> 
                     </div>
                 )}
             </div>

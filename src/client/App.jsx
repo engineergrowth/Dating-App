@@ -11,7 +11,7 @@ import { AuthProvider } from "./context/AuthContext";
 import DiscoveringPeople from "./components/DiscoveringPeople";
 import ViewProfile from "./components/ViewProfile";
 import SendMessage from "./components/SendMessage";
-
+import Notifications from "./components/Notifications";
 
 const App = () => {
   return (
@@ -28,6 +28,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/discover" element={<DiscoveringPeople />} />
           <Route path="/profile/:profileId" element={<ViewProfile />} />
+          <Route path="/notifications" element={<Notifications />} />
 
           <Route path="/send-message/:receiverId" element={<SendMessage />} />
         </Routes>

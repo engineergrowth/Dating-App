@@ -1,18 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-const backgroundImage = "/6.jpg";
+import React from "react";
+import { Link } from "react-router-dom";
+const backgroundImage = "/1.png";
 
-const LandingPage = () => {
-  const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
-
-  if (isLoggedIn) {
-    navigate("/matches");
-    return null;
-  }
-
+const Notifications = () => {
   return (
     <div
       style={{
@@ -43,19 +33,13 @@ const LandingPage = () => {
           Find Your Match. Start Your Story. Pucker Up for Love.
         </p>
         <div className="flex flex-col space-y-2">
-          <div className="flex flex-row space-x-2">
-            {" "}
-            <Link to="/login" className="flex-grow login-button">
-              Login
-            </Link>
-            <Link to="/register" className="flex-grow join-now-button">
-              Join Now
-            </Link>
-          </div>
+          <Link to="/register" className="join-now-button">
+            Join Now
+          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default LandingPage;
+export default Notifications;

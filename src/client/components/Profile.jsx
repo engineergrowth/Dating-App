@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-
 const Profile = () => {
   const { userId, isLoggedIn, profileId, token } = useAuth();
   const [formData, setFormData] = useState({
@@ -23,7 +22,6 @@ const Profile = () => {
     picture_url: "",
     bio: "",
   });
-
   const fetchProfileData = async () => {
     try {
       const response = await fetch(`/api/profile/${profileId}`);
@@ -37,22 +35,18 @@ const Profile = () => {
       console.error("Error fetching data:", error.message);
     }
   };
-
   useEffect(() => {
     if (isLoggedIn) {
       fetchProfileData();
     }
   }, [userId, isLoggedIn]);
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value || "",
     }));
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const profileId = formData.profile_id;
@@ -60,13 +54,11 @@ const Profile = () => {
       console.error("Profile ID not found");
       return;
     }
-
     try {
       if (!token) {
         console.error("No token found");
         return;
       }
-
       const response = await fetch(`/api/profile/${profileId}`, {
         method: "PUT",
         headers: {
@@ -75,7 +67,6 @@ const Profile = () => {
         },
         body: JSON.stringify(formData),
       });
-
       if (response.ok) {
         alert("Update successful:");
         document.querySelector("#profile-form").reset();
@@ -92,7 +83,6 @@ const Profile = () => {
       console.error("Error updating profile:", error.message);
     }
   };
-
   return (
     <section className="h-screen">
       <div className="flex flex-row items-center justify-center bg-gray-100">

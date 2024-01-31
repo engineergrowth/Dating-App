@@ -3,7 +3,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const profilesRouter = express.Router();
 const { isValidDate } = require("../auth/utils.js");
-
 // GET all user profiles
 profilesRouter.get("/", async (req, res) => {
   try {
@@ -22,25 +21,19 @@ profilesRouter.get("/random", async (req, res) => {
     if (totalProfiles === 0) {
       return res.status(404).send("No profiles available");
     }
-
     // Generate a random index
     const randomIndex = Math.floor(Math.random() * totalProfiles);
-
     // Fetch one profile at the random index
     const [randomProfile] = await prisma.profiles.findMany({
       take: 1,
       skip: randomIndex,
     });
-
-    
-    
     res.json(randomProfile);
   } catch (error) {
     console.error("Error fetching random profile:", error);
     res.status(500).send(error.message);
   }
 });
-
 // get users profile by profile id
 profilesRouter.get("/:profileId", async (req, res) => {
   const { profileId } = req.params;
@@ -58,7 +51,6 @@ profilesRouter.get("/:profileId", async (req, res) => {
     res.status(500).send("Internal server error");
   }
 });
-
 // POST a new user profile
 profilesRouter.post("/", async (req, res) => {
   try {
@@ -83,18 +75,14 @@ profilesRouter.post("/", async (req, res) => {
       picture_url,
       bio,
     } = req.body;
-
     // Validate the birthdate format
     if (!isValidDate(birthdate)) {
       return res.status(400).send("Invalid birthdate format. Use YYYY-MM-DD.");
     }
-
     // Convert birthdate to JavaScript Date object
     const formattedBirthdate = new Date(birthdate);
-
     const smokesBool = smokes === "yes";
     const drinksBool = drinks === "yes";
-
     // Create a new profile
     const newProfile = await prisma.profiles.create({
       data: {
@@ -119,7 +107,6 @@ profilesRouter.post("/", async (req, res) => {
         bio,
       },
     });
-
     // Send the created profile as a response
     res.status(201).json(newProfile);
   } catch (error) {
@@ -127,7 +114,6 @@ profilesRouter.post("/", async (req, res) => {
     res.status(500).send(error.message);
   }
 });
-
 // PUT to update a user's profile by user_id
 profilesRouter.put("/:profileId", async (req, res) => {
   const { profileId } = req.params; // Get the profileId from the route params
@@ -158,15 +144,12 @@ profilesRouter.put("/:profileId", async (req, res) => {
     const existingProfile = await prisma.profiles.findUnique({
       where: { profile_id: profileId }, // Use the dynamically retrieved profileId
     });
-
     if (!existingProfile) {
       console.log("Profile not found");
       return res.status(420).send("Profile not found");
     }
-
     const smokesBool = smokes === "yes";
     const drinksBool = drinks === "yes";
-
     // Update the profile data
     const updatedProfile = await prisma.profiles.update({
       where: { profile_id: profileId }, // Use the dynamically retrieved profileId
@@ -190,14 +173,12 @@ profilesRouter.put("/:profileId", async (req, res) => {
         bio,
       },
     });
-
     res.json(updatedProfile);
   } catch (error) {
     console.error("Error updating profile:", error);
     res.status(500).send(error.message);
   }
 });
-
 // DELETE a user's profile by user_id
 profilesRouter.delete("/:userId", async (req, res) => {
   try {
@@ -210,5 +191,4 @@ profilesRouter.delete("/:userId", async (req, res) => {
     res.status(500).send(error.message);
   }
 });
-
 module.exports = profilesRouter;

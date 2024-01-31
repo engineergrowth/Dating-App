@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+const backgroundImage = "/6.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,9 +32,18 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 rounded-lg bg-white shadow-md">
-        <h2 className="text-2xl font-bold text-center text-gray-700">Login</h2>
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+      className="h-screen w-full flex flex-col justify-center p-8"
+    >
+      <div className="custom-width ">
+        <h1 className="title-text">Pucker Up!</h1>
         <form onSubmit={handleLogin} className="space-y-6">
           <input
             type="email"

@@ -124,7 +124,7 @@ const Matches = () => {
         <div>
           <div
             style={{ backgroundColor: "#1F2937", maxWidth: "900px" }}
-            className="bg-white p-5 rounded-lg max-w-lg mx-auto my-8 shadow-md border border-red-600"
+            className="bg-white p-5 rounded-lg max-w-lg mx-auto my-8 shadow-md border"
           >
             <h2 className="text-2xl font-bold text-white">Suggested Matches</h2>
             <div className="grid grid-cols-4 gap-4">
@@ -136,11 +136,11 @@ const Matches = () => {
                     }
                     className="cursor-pointer hover:opacity-80"
                   >
-                    <div className="p-5 bg-white rounded-lg shadow-md border border-red-600">
+                    <div class="suggested-container">
                       <img
                         src={suggestion.picture_url || noImage}
                         alt={suggestion.name}
-                        className="w-24 h-24 mr-4"
+                        class="suggested-image"
                       />
                       <div>Name: {suggestion.name}</div>
                       <div>Age: {calculateAge(suggestion.birthdate)}</div>

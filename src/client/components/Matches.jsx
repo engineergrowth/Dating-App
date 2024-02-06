@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 const noImage = "/noImage.jpg";
+import ".././style.css";
 
 const Matches = () => {
   const [likes, setLikes] = useState([]);
@@ -121,35 +122,30 @@ const Matches = () => {
             </li>
           ))}
         </ul>
-        <div>
-          <div
-            style={{ backgroundColor: "#1F2937", maxWidth: "900px" }}
-            className="bg-white p-5 rounded-lg max-w-lg mx-auto my-8 shadow-md border"
-          >
-            <h2 className="text-2xl font-bold text-white">Suggested Matches</h2>
-            <div className="grid grid-cols-4 gap-4">
-              {suggestions.map((suggestion, index) => (
-                <div key={index} className="w-1/2 md:w-1/3 lg:w-1/4 p-2">
-                  <div
-                    onClick={() =>
-                      handleViewProfileClick(suggestion.profile_id)
-                    }
-                    className="cursor-pointer hover:opacity-80"
-                  >
-                    <div class="suggested-container">
-                      <img
-                        src={suggestion.picture_url || noImage}
-                        alt={suggestion.name}
-                        class="suggested-image"
-                      />
-                      <div>Name: {suggestion.name}</div>
-                      <div>Age: {calculateAge(suggestion.birthdate)}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+      </div>
+      <div
+        style={{ backgroundColor: "#1F2937", maxWidth: "900px" }}
+        className="p-5 rounded-lg max-w-lg mx-auto my-8 shadow-md"
+      >
+        <h2 className="text-2xl font-bold text-white">Suggested Matches</h2>
+        <div className="suggestions-container">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              className="suggestion-card"
+              onClick={() => handleViewProfileClick(suggestion.profile_id)}
+            >
+              <img
+                src={suggestion.picture_url || noImage}
+                alt={suggestion.name}
+                className="suggestion-image"
+              />
+              <div className="name">{suggestion.name}</div>
+              <div className="age">
+                Age: {calculateAge(suggestion.birthdate)}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

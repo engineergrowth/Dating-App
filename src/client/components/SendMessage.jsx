@@ -21,7 +21,7 @@ const SendMessageComponent = () => {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          sender_id: userId, // Use the sender's user ID from the AuthContext
+          sender_id: userId,
           receiver_id: receiverId,
           content: message,
         }),
@@ -46,7 +46,7 @@ const SendMessageComponent = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Type your message here..."
-        />
+        ></textarea>
         <button type="submit" className="send-message-button">
           Send Message
         </button>

@@ -4,6 +4,7 @@ import viewsIcon from "/views.jpg";
 import matchesIcon from "/matches.png";
 import cloudIcon from "/cloud.png";
 import { useNavigate } from "react-router-dom";
+import ".././style.css";
 
 const Profile = () => {
   const { userId, isLoggedIn, profileId, token } = useAuth();
@@ -95,8 +96,13 @@ const Profile = () => {
             </span>
             <span className="tag">Body Type: {formData.body_type}</span>
             <span className="tag">Ethnicity: {formData.ethnicity}</span>
-            <span className="tag">Smokes: {formData.smokes}</span>
-            <span className="tag">Drinks: {formData.drinks}</span>
+            <span className="tag">
+              Smokes: {formData.smokes ? "Yes" : "No"}
+            </span>
+            <span className="tag">
+              Drinks: {formData.drinks ? "Yes" : "No"}
+            </span>
+
             <span className="tag">
               Current Location: {formData.current_location}
             </span>
@@ -122,7 +128,7 @@ const Profile = () => {
         <div className="title text-center font-bold">Views</div>
         <div className="title text-center">235</div>
         <button
-          className="bg-red-600 text-white p-2 rounded-md transition duration-300 hover:bg-red-700 center-button"
+          className="bg-red-600 text-white p-2 rounded-md transition duration-300 hover:bg-blue-500 center-button"
           onClick={navigateToEditPage}
         >
           Edit Profile

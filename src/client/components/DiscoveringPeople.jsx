@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import ".././style.css";
 
 const Discover = () => {
   const [randomProfile, setRandomProfile] = useState(null);
@@ -8,7 +9,6 @@ const Discover = () => {
   const [like, setLike] = useState(null);
   const navigate = useNavigate();
   const { userId } = useAuth();
-  // const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (userId) {
@@ -155,10 +155,7 @@ const Discover = () => {
           View Profile
         </button>
         {like ? (
-          <button
-            className="bg-red-600 text-white p-3 rounded-md cursor-pointer text-lg transition duration-300 hover:bg-purple-600 "
-            // onClick={handleHeartClick}
-          >
+          <button className="bg-red-600 text-white p-3 rounded-md cursor-pointer text-lg transition duration-300 hover:bg-purple-600 ">
             <span>✅</span>
             <span className="top-part"></span>
             <span className="bottom-part"></span>

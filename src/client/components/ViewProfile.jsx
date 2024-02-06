@@ -134,7 +134,7 @@ const ViewProfile = () => {
               </div>
               <Link
                 to={`/send-message/${profile.user_id}`} // Use the 'user_id' from the fetched profile
-                className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300 mt-4"
+                className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 mr-4 rounded-md transition duration-300 mt-4"
               >
                 Send Message
               </Link>
